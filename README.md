@@ -7,6 +7,7 @@ Python project
 1. Background Context
 
 2. Importing Packages
+   
 pandas / numpy → For data cleaning, manipulation, and numerical operations.
 
 matplotlib / seaborn → For static visualizations.
