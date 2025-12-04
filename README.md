@@ -5,25 +5,17 @@ Python project: Water Quality Analysis Project
 ## Table of Contents
 
 1. Background Context
-Problem Statement:
+Problem Statement
+Access to clean and safe water is essential for human health, ecosystem stability, and socio-economic development. Despite its importance, river systems worldwide are increasingly threatened by pollution originating from industrial effluents, agricultural runoff, and domestic wastewater. These pollutants alter the physicochemical properties of river water, potentially rendering it unsafe for human consumption, agriculture, and aquatic ecosystems.
+The dataset River water parameters (1).csv comprises multiple physicochemical measurements, including pH, turbidity, dissolved oxygen, electrical conductivity, hardness, nitrate concentration, and temperature, collected across different sampling locations and/or time periods. While the dataset provides valuable raw observations, meaningful conclusions cannot be drawn without systematic data analysis to uncover relationships, trends, and deviations from acceptable water-quality standards.
+This project therefore seeks to apply data-driven analytical techniques to explore and interpret the river water quality data. The goal is to identify hidden patterns, monitor pollution indicators, and assess whether current water conditions meet environmental and public health requirements for designated uses such as drinking water supply, agricultural irrigation, and aquatic life protection.
 
-Access to clean and safe water is a fundamental human need, yet water pollution continues to pose a serious threat to ecosystems and human health worldwide. Industrial discharges, agricultural runoff, and domestic waste contribute significantly to the degradation of river water quality.
-
-The dataset River water parameters (1).csv contains various physicochemical parameters (such as pH, turbidity, dissolved oxygen, conductivity, hardness, nitrate, and temperature) collected from different sampling locations or times. However, without proper analysis, it is difficult to understand how these parameters interact and whether the water quality meets acceptable environmental and health standards.
-
-This project aims to analyze river water quality using data-driven techniques to identify patterns, detect possible contamination, and evaluate the suitability of water for different uses (e.g., drinking, agriculture, and aquatic life).
-
-
-Key problems to address include:
-
-Identifying trends and correlations between different water quality parameters.
-
-Detecting potential pollution or anomaly patterns in the river.
-
-Classifying the overall water quality (good, moderate, or poor) based on key indicators.
-
-Providing actionable insights for environmental monitoring and policy recommendations.
-
+2. Key Problems to Address
+The specific research objectives of this project include:
+    • Identifying trends and correlations among key water-quality parameters to understand how physicochemical factors interact within the river system.
+    • Detecting anomalies or pollution indicators that may signal contamination events or environmental stress.
+    • Classifying overall water quality into categories such as good, moderate, or poor based on standard water-quality indices and threshold criteria.
+    • Generating actionable insights to support environmental monitoring initiatives, inform policy decisions, and contribute to improved river management practices.
 
 Out of Scope
 
@@ -96,26 +88,76 @@ Total Cl- (mg Cl-/L)	213	float64	Chloride concentration — affects taste and co
 
 Dataset is mostly complete (over 97% non-null) — good data quality.
 
-Numeric-heavy dataset: 12 out of 16 columns are numerical → suitable for statistical analysis and machine learning.
-
-Environmental monitoring dataset: Tracks physical, chemical, and biological indicators for water quality assessment.
 
 
-4. Loading Data 
 
-5. Data Cleaning and Filtering
+4. Loading Data
 
-6. Exploratory Data Analysis (EDA)
+The dataset was imported into Python using the Pandas library. An initial inspection of the dataset shape and structure was conducted to determine the number of observations, available variables, and data types.
 
-7. Modeling
+6. Data Cleaning and Filtering
 
-8. Evaluation and Validation
+Standardization of Column Names
 
-9. Final Model
+Column headers contained spaces, special characters, measurement units, and line breaks that complicated analysis. These were cleaned and standardized by:
 
-10. Conclusion and Future Work
+Converting all names to lowercase.
 
-11. References
+Replacing spaces with underscores.
+
+Removing special characters, parentheses, and line breaks.
+
+This produced consistent, machine-friendly variable names.
+
+Data Type Conversion
+
+Date and time fields were converted to appropriate data formats:
+
+Time values were converted into structured time formats, this enabled temporal analysis and prevented type-related errors in downstream processing.
+
+Missing Value Handling, a missing-value audit revealed gaps in several variables such as:
+
+Total Suspended Solids (TSS), Level measurements, Turbidity, Hardness, Chloride
+
+To ensure data completeness while preserving realistic distributions:
+
+Numeric variables were imputed using the median value, which is robust to skewed distributions and outliers.
+
+Categorical variables were filled using the mode (most frequent value) to maintain logical consistency.
+
+This approach eliminated all missing values without discarding records unnecessarily.
+
+Outlier Detection and Removal
+
+Outliers—extreme measurements that could distort statistical analysis—were detected using the Interquartile Range (IQR) method:
+
+For each key numeric variable, first (Q1) and third (Q3) quartiles were calculated.
+
+The IQR was computed as Q3 − Q1.
+
+Values lying outside the acceptable range (Q1 − 1.5 × IQR to Q3 + 1.5 × IQR) were classified as outliers.
+
+These anomalous values were removed to prevent skewing model results and to improve the stability of correlations, clustering, and classification.
+
+Feature Filtering and Data Reduction, to optimize performance and focus the analysis on scientifically relevant variables, the dataset was reduced to core water-quality indicators, including:
+
+pH, Dissolved oxygen (DO), Turbidity, Electrical conductivity (EC), Total dissolved solids (TDS), Total suspended solids (TSS), Hardness, Chloride (Cl⁻), Water temperature
+
+Sampling point and date, non-essential or highly sparse variables were excluded to streamline exploratory data analysis and modeling.
+
+The cleaned and filtered dataset was exported as:
+
+8. Exploratory Data Analysis (EDA)
+
+9. Modeling
+
+10. Evaluation and Validation
+
+11. Final Model
+
+12. Conclusion and Future Work
+
+13. References
 
 
 Packages used
