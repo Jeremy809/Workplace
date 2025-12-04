@@ -149,15 +149,43 @@ The cleaned and filtered dataset was exported as:
 
 8. Exploratory Data Analysis (EDA)
 
-9. Modeling
 
-10. Evaluation and Validation
+Water Hardness Levels (Local Classification)
 
-11. Final Model
+Water hardness is a measure of the concentration of calcium (Ca²⁺) and magnesium (Mg²⁺) ions in water. Hardness affects taste, scaling in pipes, and water usability. In this dataset, local classifications include BLANDA and SEMIDURA.
 
-12. Conclusion and Future Work
+BLANDA (Soft water): Can have high turbidity, indicating suspended solids, which may make it appear “dirty” despite low hardness.
 
-13. References
+SEMIDURA (Moderately hard): Usually clear water, with moderate mineral content beneficial for taste and health but may contribute to scaling over time.
+
+
+Water Quality Indicator
+Soft	BLANDA	< 60	High (cloudy)	Dirty/High Suspended Solids
+Water with low mineral content. Often associated with high turbidity, indicating the water may appear cloudy or dirty. Suitable for domestic use but may require treatment for sediment removal.
+
+Moderate	SEMIDURA	60 – 119	Low/Moderate	Clear but with dissolved minerals
+Water with moderate mineral content. Generally clearer than soft water, but contains more dissolved minerals. Suitable for domestic and agricultural use.
+
+Hard	–	120 – 179	Low	 Clear water; scaling possible
+Higher mineral content; may cause scaling in pipes and appliances.
+
+Very Hard	–	≥ 180	Low	Clear water; high scaling Clear water; scaling possible
+Very high mineral content; likely to form significant scale, may need water softening for certain uses.
+
+Hardness Level	Local Term	CaCO₃ Concentration (mg/L)	Description
+
+
+
+
+10. Modeling
+
+11. Evaluation and Validation
+
+12. Final Model
+
+13. Conclusion and Future Work
+
+14. References
 
 
 Packages used
