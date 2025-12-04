@@ -8,9 +8,10 @@ Python project: Water Quality Analysis Project
 Problem Statement
 Access to clean and safe water is essential for human health, ecosystem stability, and socio-economic development. Despite its importance, river systems worldwide are increasingly threatened by pollution originating from industrial effluents, agricultural runoff, and domestic wastewater. These pollutants alter the physicochemical properties of river water, potentially rendering it unsafe for human consumption, agriculture, and aquatic ecosystems.
 The dataset River water parameters (1).csv comprises multiple physicochemical measurements, including pH, turbidity, dissolved oxygen, electrical conductivity, hardness, nitrate concentration, and temperature, collected across different sampling locations and/or time periods. While the dataset provides valuable raw observations, meaningful conclusions cannot be drawn without systematic data analysis to uncover relationships, trends, and deviations from acceptable water-quality standards.
+
 This project therefore seeks to apply data-driven analytical techniques to explore and interpret the river water quality data. The goal is to identify hidden patterns, monitor pollution indicators, and assess whether current water conditions meet environmental and public health requirements for designated uses such as drinking water supply, agricultural irrigation, and aquatic life protection.
 
-2. Key Problems to Address
+3. Key Problems to Address
 The specific research objectives of this project include:
     • Identifying trends and correlations among key water-quality parameters to understand how physicochemical factors interact within the river system.
     • Detecting anomalies or pollution indicators that may signal contamination events or environmental stress.
@@ -40,7 +41,7 @@ scipy → For additional statistical tools.
 
 collections / itertools → For handling combinations and counting (useful in Apriori or feature selection tasks).
 
-3. Data Collection and Description<
+3. Data Collection and Description
 
 Dataset Overview
 
@@ -84,11 +85,7 @@ Hardness classification	217	object	Categorical label (e.g., “Soft”, “Moder
 
 Total Cl- (mg Cl-/L)	213	float64	Chloride concentration — affects taste and corrosion.
 
-
-
 Dataset is mostly complete (over 97% non-null) — good data quality.
-
-
 
 
 4. Loading Data
@@ -107,8 +104,6 @@ Replacing spaces with underscores.
 
 Removing special characters, parentheses, and line breaks.
 
-This produced consistent, machine-friendly variable names.
-
 Data Type Conversion
 
 Date and time fields were converted to appropriate data formats:
@@ -126,7 +121,19 @@ Numeric variables were imputed using the median value, which is robust to skewed
 Categorical variables were filled using the mode (most frequent value) to maintain logical consistency.
 
 This approach eliminated all missing values without discarding records unnecessarily.
+Missing Values Analysis
 
+Identified columns with missing values:
+
+TSS (6 missing), Level (39 missing), Turbidity (1 missing), Hardness (2 missing), Total Cl (6 missing).
+
+Handled missing values using median for numeric and mode for categorical columns.
+
+Column Cleaning and Standardization
+
+Standardized column names to lowercase and underscores for easier access.
+
+Ensured all important columns (pH, hardness, turbidity, chloride, etc.) were included
 Outlier Detection and Removal
 
 Outliers—extreme measurements that could distort statistical analysis—were detected using the Interquartile Range (IQR) method:
@@ -148,6 +155,64 @@ Sampling point and date, non-essential or highly sparse variables were excluded 
 The cleaned and filtered dataset was exported as:
 
 8. Exploratory Data Analysis (EDA)
+Creation of Categorical Features
+
+pH_Category: Classified water as Acidic, Neutral, or Alkaline based on pH value.
+
+Hardness_Level: Classified water as Soft, Moderate, Hard, or Very Hard based on calcium hardness.
+
+Univariate Analysis
+
+Histograms: Observed distributions of individual parameters (e.g., pH, EC, TDS, turbidity).
+
+Boxplots: Identified outliers and distribution spread for numerical parameters.
+
+Bivariate Analysis
+
+Scatter plots: Explored relationships between variables (e.g., EC vs TDS).
+
+Boxplots: Compared parameters across categories, e.g., Total Cl across Hardness_Level.
+
+Correlation analysis: Determined strong relationships among numerical features.
+
+Categorical Analysis
+
+Countplots: Visualized frequency of pH categories and hardness levels.
+
+Observation:
+
+BLANDA (Soft water) sometimes had high turbidity.
+
+SEMIDURA (Moderately hard) water was generally clearer but contained more dissolved minerals.
+
+Outlier Detection
+
+Detected extreme values in parameters like TSS, Turbidity, and DO.
+
+Outliers were noted for potential investigation or filtering.
+Water pH Levels
+
+Water pH is a measure of acidity or alkalinity, reflecting the concentration of hydrogen ions (H⁺) in water. It is a key indicator of water quality as it affects aquatic life, chemical solubility, and water usability. pH values typically range from 0 to 14:
+
+pH Range	Classification	Description
+< 7	Acidic	Water with a pH below 7 is acidic. Can corrode pipes, affect aquatic life, and indicate pollution from industrial or agricultural sources.
+7	Neutral	Pure water is neutral. Most aquatic life thrives at near-neutral pH.
+> 7	Alkaline (Basic)	Water with pH above 7 is alkaline. Usually safe to drink but may affect taste and cause scaling in pipes. Excessive alkalinity can also impact aquatic ecosystems.
+Local pH Classification Example (Dataset)
+
+In the dataset, pH values were classified as follows:
+
+pH Value	pH_Category
+0 – 6.9	Acidic
+7.0 – 8.5	Neutral
+> 8.5	Alkaline
+Key Observations
+
+Most river water samples were neutral (around 7–8.5), indicating slightly alkaline conditions.
+
+Few samples approached high alkalinity (> 8.5), which may influence water taste and the solubility of minerals.
+
+Acidic water (<7) was rare or absent, suggesting minimal industrial/acidic pollution in the sampled areas.
 
 
 Water Hardness Levels (Local Classification)
