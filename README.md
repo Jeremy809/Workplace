@@ -5,25 +5,18 @@ Python project: Water Quality Analysis Project
 ## Table of Contents
 
 1. Background Context
-Problem Statement:
+Problem Statement
+Access to clean and safe water is essential for human health, ecosystem stability, and socio-economic development. Despite its importance, river systems worldwide are increasingly threatened by pollution originating from industrial effluents, agricultural runoff, and domestic wastewater. These pollutants alter the physicochemical properties of river water, potentially rendering it unsafe for human consumption, agriculture, and aquatic ecosystems.
+The dataset River water parameters (1).csv comprises multiple physicochemical measurements, including pH, turbidity, dissolved oxygen, electrical conductivity, hardness, nitrate concentration, and temperature, collected across different sampling locations and/or time periods. While the dataset provides valuable raw observations, meaningful conclusions cannot be drawn without systematic data analysis to uncover relationships, trends, and deviations from acceptable water-quality standards.
 
-Access to clean and safe water is a fundamental human need, yet water pollution continues to pose a serious threat to ecosystems and human health worldwide. Industrial discharges, agricultural runoff, and domestic waste contribute significantly to the degradation of river water quality.
+This project therefore seeks to apply data-driven analytical techniques to explore and interpret the river water quality data. The goal is to identify hidden patterns, monitor pollution indicators, and assess whether current water conditions meet environmental and public health requirements for designated uses such as drinking water supply, agricultural irrigation, and aquatic life protection.
 
-The dataset River water parameters (1).csv contains various physicochemical parameters (such as pH, turbidity, dissolved oxygen, conductivity, hardness, nitrate, and temperature) collected from different sampling locations or times. However, without proper analysis, it is difficult to understand how these parameters interact and whether the water quality meets acceptable environmental and health standards.
-
-This project aims to analyze river water quality using data-driven techniques to identify patterns, detect possible contamination, and evaluate the suitability of water for different uses (e.g., drinking, agriculture, and aquatic life).
-
-
-Key problems to address include:
-
-Identifying trends and correlations between different water quality parameters.
-
-Detecting potential pollution or anomaly patterns in the river.
-
-Classifying the overall water quality (good, moderate, or poor) based on key indicators.
-
-Providing actionable insights for environmental monitoring and policy recommendations.
-
+3. Key Problems to Address
+The specific research objectives of this project include:
+    • Identifying trends and correlations among key water-quality parameters to understand how physicochemical factors interact within the river system.
+    • Detecting anomalies or pollution indicators that may signal contamination events or environmental stress.
+    • Classifying overall water quality into categories such as good, moderate, or poor based on standard water-quality indices and threshold criteria.
+    • Generating actionable insights to support environmental monitoring initiatives, inform policy decisions, and contribute to improved river management practices.
 
 Out of Scope
 
@@ -48,7 +41,7 @@ scipy → For additional statistical tools.
 
 collections / itertools → For handling combinations and counting (useful in Apriori or feature selection tasks).
 
-3. Data Collection and Description<
+3. Data Collection and Description
 
 Dataset Overview
 
@@ -58,7 +51,7 @@ Total rows (entries): 219
 
 Total columns (features): 16
 
-#	Column Name	Non-Null Count	Data Type	Description
+Column Names
 
 Date (DD/MM/YYYY)	219	object	Date when the water sample was collected (string format).
 
@@ -92,30 +85,163 @@ Hardness classification	217	object	Categorical label (e.g., “Soft”, “Moder
 
 Total Cl- (mg Cl-/L)	213	float64	Chloride concentration — affects taste and corrosion.
 
-
-
 Dataset is mostly complete (over 97% non-null) — good data quality.
 
-Numeric-heavy dataset: 12 out of 16 columns are numerical → suitable for statistical analysis and machine learning.
 
-Environmental monitoring dataset: Tracks physical, chemical, and biological indicators for water quality assessment.
+4. Loading Data
+
+The dataset was imported into Python using the Pandas library. An initial inspection of the dataset shape and structure was conducted to determine the number of observations, available variables, and data types.
+
+6. Data Cleaning and Filtering
+
+Standardization of Column Names
+
+Column headers contained spaces, special characters, measurement units, and line breaks that complicated analysis. These were cleaned and standardized by:
+
+Converting all names to lowercase.
+
+Replacing spaces with underscores.
+
+Removing special characters, parentheses, and line breaks.
+
+Data Type Conversion
+
+Date and time fields were converted to appropriate data formats:
+
+Time values were converted into structured time formats, this enabled temporal analysis and prevented type-related errors in downstream processing.
+
+Missing Value Handling, a missing-value audit revealed gaps in several variables such as:
+
+Total Suspended Solids (TSS), Level measurements, Turbidity, Hardness, Chloride
+
+To ensure data completeness while preserving realistic distributions:
+
+Numeric variables were imputed using the median value, which is robust to skewed distributions and outliers.
+
+Categorical variables were filled using the mode (most frequent value) to maintain logical consistency.
+
+This approach eliminated all missing values without discarding records unnecessarily.
+Missing Values Analysis
+
+Identified columns with missing values:
+
+TSS (6 missing), Level (39 missing), Turbidity (1 missing), Hardness (2 missing), Total Cl (6 missing).
+
+Handled missing values using median for numeric and mode for categorical columns.
+
+Column Cleaning and Standardization
+
+Standardized column names to lowercase and underscores for easier access.
+
+Ensured all important columns (pH, hardness, turbidity, chloride, etc.) were included
+Outlier Detection and Removal
+
+Outliers—extreme measurements that could distort statistical analysis—were detected using the Interquartile Range (IQR) method:
+
+For each key numeric variable, first (Q1) and third (Q3) quartiles were calculated.
+
+The IQR was computed as Q3 − Q1.
+
+Values lying outside the acceptable range (Q1 − 1.5 × IQR to Q3 + 1.5 × IQR) were classified as outliers.
+
+These anomalous values were removed to prevent skewing model results and to improve the stability of correlations, clustering, and classification.
+
+Feature Filtering and Data Reduction, to optimize performance and focus the analysis on scientifically relevant variables, the dataset was reduced to core water-quality indicators, including:
+
+pH, Dissolved oxygen (DO), Turbidity, Electrical conductivity (EC), Total dissolved solids (TDS), Total suspended solids (TSS), Hardness, Chloride (Cl⁻), Water temperature
+
+Sampling point and date, non-essential or highly sparse variables were excluded to streamline exploratory data analysis and modeling.
+
+The cleaned and filtered dataset was exported as:
+
+8. Exploratory Data Analysis (EDA)
+Creation of Categorical Features
+
+pH_Category: Classified water as Acidic, Neutral, or Alkaline based on pH value.
+
+Hardness_Level: Classified water as Soft, Moderate, Hard, or Very Hard based on calcium hardness.
+
+Univariate Analysis
+
+Histograms: Observed distributions of individual parameters (e.g., pH, EC, TDS, turbidity).
+
+Boxplots: Identified outliers and distribution spread for numerical parameters.
+
+Bivariate Analysis
+
+Scatter plots: Explored relationships between variables (e.g., EC vs TDS).
+
+Boxplots: Compared parameters across categories, e.g., Total Cl across Hardness_Level.
+
+Correlation analysis: Determined strong relationships among numerical features.
+
+Categorical Analysis
+
+Countplots: Visualized frequency of pH categories and hardness levels.
+
+Observation:
+
+BLANDA (Soft water) sometimes had high turbidity.
+
+SEMIDURA (Moderately hard) water was generally clearer but contained more dissolved minerals.
+
+Outlier Detection
+
+Detected extreme values in parameters like TSS, Turbidity, and DO.
+
+Outliers were noted for potential investigation or filtering.
+
+Water pH Levels and Suitability for Consumption
+
+Water pH measures the acidity or alkalinity of water, which affects its taste, chemical properties, and safety for consumption. The scale ranges from 0 to 14:
+
+pH Range	Classification	Suitability for Drinking	Description
+< 7	Acidic	⚠ Not ideal	Acidic water can corrode pipes, leach metals, and may indicate pollution. Not generally suitable for long-term consumption.
+7 – 8.5	Neutral	✅ Safe	    Neutral to slightly alkaline water is ideal for drinking, cooking, and aquatic life. Most river water samples fall in this range.
+> 8.5	Alkaline (Basic)	⚠ Caution	 Water with high alkalinity is generally safe but may affect taste, cause scaling in pipes, and impact mineral solubility. Occasional consumption is usually fine.
+
+Most river water samples were neutral (pH 7–8.5), making them suitable for consumption.
+
+Only a few samples showed high alkalinity (>8.5), which may slightly affect taste but are generally safe.
+
+Acidic water (<7) was rare, indicating minimal industrial or acidic pollution in the sampled areas.
+
+Water Hardness Levels (Local Classification)
+
+Water hardness is a measure of the concentration of calcium (Ca²⁺) and magnesium (Mg²⁺) ions in water. Hardness affects taste, scaling in pipes, and water usability. In this dataset, local classifications include BLANDA and SEMIDURA.
+
+BLANDA (Soft water): Can have high turbidity, indicating suspended solids, which may make it appear “dirty” despite low hardness.
+
+SEMIDURA (Moderately hard): Usually clear water, with moderate mineral content beneficial for taste and health but may contribute to scaling over time.
 
 
-4. Loading Data 
+Water Quality Indicator
+Soft	BLANDA	< 60	High (cloudy)	Dirty/High Suspended Solids
+Water with low mineral content. Often associated with high turbidity, indicating the water may appear cloudy or dirty. Suitable for domestic use but may require treatment for sediment removal.
 
-5. Data Cleaning and Filtering
+Moderate	SEMIDURA	60 – 119	Low/Moderate	Clear but with dissolved minerals
+Water with moderate mineral content. Generally clearer than soft water, but contains more dissolved minerals. Suitable for domestic and agricultural use.
 
-6. Exploratory Data Analysis (EDA)
+Hard	–	120 – 179	Low	 Clear water; scaling possible
+Higher mineral content; may cause scaling in pipes and appliances.
 
-7. Modeling
+Very Hard	–	≥ 180	Low	Clear water; high scaling Clear water; scaling possible
+Very high mineral content; likely to form significant scale, may need water softening for certain uses.
 
-8. Evaluation and Validation
+Hardness Level	Local Term	CaCO₃ Concentration (mg/L)	Description
 
-9. Final Model
 
-10. Conclusion and Future Work
 
-11. References
+
+10. Modeling
+
+11. Evaluation and Validation
+
+12. Final Model
+
+13. Conclusion and Future Work
+
+14. References
 
 
 Packages used
