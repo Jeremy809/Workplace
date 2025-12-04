@@ -190,30 +190,21 @@ Outlier Detection
 Detected extreme values in parameters like TSS, Turbidity, and DO.
 
 Outliers were noted for potential investigation or filtering.
-Water pH Levels
 
-Water pH is a measure of acidity or alkalinity, reflecting the concentration of hydrogen ions (H⁺) in water. It is a key indicator of water quality as it affects aquatic life, chemical solubility, and water usability. pH values typically range from 0 to 14:
+Water pH Levels and Suitability for Consumption
 
-pH Range	Classification	Description
-< 7	Acidic	Water with a pH below 7 is acidic. Can corrode pipes, affect aquatic life, and indicate pollution from industrial or agricultural sources.
-7	Neutral	Pure water is neutral. Most aquatic life thrives at near-neutral pH.
-> 7	Alkaline (Basic)	Water with pH above 7 is alkaline. Usually safe to drink but may affect taste and cause scaling in pipes. Excessive alkalinity can also impact aquatic ecosystems.
-Local pH Classification Example (Dataset)
+Water pH measures the acidity or alkalinity of water, which affects its taste, chemical properties, and safety for consumption. The scale ranges from 0 to 14:
 
-In the dataset, pH values were classified as follows:
+pH Range	Classification	Suitability for Drinking	Description
+< 7	Acidic	⚠ Not ideal	Acidic water can corrode pipes, leach metals, and may indicate pollution. Not generally suitable for long-term consumption.
+7 – 8.5	Neutral	✅ Safe	    Neutral to slightly alkaline water is ideal for drinking, cooking, and aquatic life. Most river water samples fall in this range.
+> 8.5	Alkaline (Basic)	⚠ Caution	 Water with high alkalinity is generally safe but may affect taste, cause scaling in pipes, and impact mineral solubility. Occasional consumption is usually fine.
 
-pH Value	pH_Category
-0 – 6.9	Acidic
-7.0 – 8.5	Neutral
-> 8.5	Alkaline
-Key Observations
+Most river water samples were neutral (pH 7–8.5), making them suitable for consumption.
 
-Most river water samples were neutral (around 7–8.5), indicating slightly alkaline conditions.
+Only a few samples showed high alkalinity (>8.5), which may slightly affect taste but are generally safe.
 
-Few samples approached high alkalinity (> 8.5), which may influence water taste and the solubility of minerals.
-
-Acidic water (<7) was rare or absent, suggesting minimal industrial/acidic pollution in the sampled areas.
-
+Acidic water (<7) was rare, indicating minimal industrial or acidic pollution in the sampled areas.
 
 Water Hardness Levels (Local Classification)
 
