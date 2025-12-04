@@ -264,6 +264,115 @@ Moderate indicates slightly elevated minerals, acidity/alkalinity, or turbidity,
 
 Poor water fails at least one critical parameter (usually high turbidity), making it unsafe for direct consumption.
 
+Ambient Temperature & Humidity
+Cluster	Ambient Temp (°C)	Ambient Humidity
+0	18.4 (moderate)	0.55
+1	16.4 (cooler)	0.55
+2	21.2 (warm)	0.55
+3	14.7 (cold)	0.67
+
+Cluster 3 is the coldest and most humid.
+
+Cluster 2 is the warmest with moderate humidity.
+
+Clusters 0 and 1 are intermediate but slightly cooler in Cluster 1.
+
+This indicates clusters differentiate partly by weather conditions.
+
+3. Sample Temperature
+
+Closely follows ambient temperature trends.
+
+Cluster 3 again shows higher sample temp relative to ambient, suggesting local variations or measurement differences.
+
+4. Water Hardness (hardness_mg_caco3_l)
+Cluster	Mean	Min	Max
+0	106–269	moderate	
+1	86–316	lower overall than 0	
+2	106–257	slightly higher than Cluster 1	
+3	94–252	lowest overall	
+
+Cluster 1 has the highest maximum, suggesting some very hard water points.
+
+Cluster 3 has lower hardness overall, meaning softer water.
+
+Water hardness varies by cluster, possibly reflecting geographic or environmental differences.
+
+5. Total Chlorine (total_cl_mg_cl_l_)
+Cluster	Mean
+0	125.2
+1	79.9
+2	107.0
+3	49.3
+
+Cluster 0 has the highest chlorine levels.
+
+Cluster 3 has the lowest chlorine levels.
+
+Chlorine levels also help differentiate clusters.
+
+Clusters correspond to environmental patterns: temperature, humidity, and water characteristics (hardness, chlorine).
+
+Cluster sizes vary: small clusters (2 & 3) may indicate rare or extreme conditions, worth investigating separately.
+
+Cluster Sizes
+Cluster	Number of Points	Share of Data
+0	114	Largest, ~50–55%
+1	72	Moderate, ~30%
+2	15	Small, ~6%
+3	18	Small, ~8%
+
+Clusters 0 and 1 represent the majority of the dataset (common environmental/water conditions).
+represent common conditions with moderate variability.
+
+Clusters 2 and 3 are small, likely representing rare or extreme conditions.
+
+Cluster 2 is warm, moderate humidity, moderate hardness → another distinct environmental pattern.
+
+Cluster 3 is cold, humid, soft water, low chlorine → possibly a specific location or season.
+
+Environmental Patterns
+Cluster	Temperature	Humidity	Sample Temp
+0	Moderate (18.4 °C)	Moderate (0.55)	19.8 °C
+1	Slightly cooler (16.4 °C)	Moderate (0.55)	18.9 °C
+2	Warm (21.2 °C)	Moderate (0.55)	19.8 °C
+3	Coldest (14.7 °C)	Most humid (0.67)	21.0 °C
+
+Clusters differentiate partly by ambient and sample temperature.
+
+Cluster 3 is notable for cold, humid conditions, while Cluster 2 is warm and moderately humid.
+
+Water Quality Patterns
+Cluster	Hardness (mg CaCO₃/L)	Total Chlorine (mg Cl/L)
+0	Moderate	Highest (~125)
+1	Slightly lower	Moderate (~80)
+2	Moderate	Moderate (~107)
+3	Lowest	Lowest (~49)
+
+Cluster 3: softest water, low chlorine – distinct from other clusters.
+
+Cluster 0: moderate hardness, highest chlorine – common conditions.
+
+Cluster 1 and 2: intermediate patterns.
+
+Insights from PCA Plot
+
+PCA visualization shows good separation between clusters 2 and 3 (small, extreme clusters) and clusters 0 and 1 (larger, moderate clusters).
+
+Black Xs in the plot indicate cluster centroids, showing the “average” condition of each cluster.
+
+Small clusters (2 & 3) stand out visually, confirming they are rare but important patterns.
+
+Key Takeaways
+
+The dataset contains four distinct environmental/water quality patterns.
+
+Large clusters (0 & 1) capture the most typical conditions, while small clusters (2 & 3) represent unusual or extreme cases.
+
+Clustering captures differences in temperature, humidity, water hardness, and chlorine levels, which could reflect geographic or seasonal variations.
+
+Small clusters (2 & 3) may warrant further investigation, as they could indicate outliers, anomalies, or unique locations.
+
 12. Evaluation and Validation
 
 13. Final Model
