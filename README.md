@@ -235,13 +235,42 @@ Hardness Level	Local Term	CaCO₃ Concentration (mg/L)	Description
 
 10. Modeling
 
-11. Evaluation and Validation
+Water Quality Classification Criteria
 
-12. Final Model
+pH	6.5 – 8.5	Good	Safe for consumption
 
-13. Conclusion and Future Work
+	< 6.5 or > 8.5	Moderate	Slightly acidic or alkaline
+    
+Hardness	< 60 mg/L (Soft)	Good	Low mineral content
 
-14. References
+	60 – 120 mg/L (Moderately Hard)	Good/Moderate	Acceptable for most uses
+    
+	120 – 200 mg/L (Hard)	Moderate	High mineral content
+    
+	> 200 mg/L (Very Hard)	Moderate/Poor	Can affect taste and scaling
+    
+Turbidity	≤ 5 NTU	Good	Clear water
+
+	5 – 100 NTU	Moderate	Some suspended particles
+    
+	> 100 NTU	Poor	Very cloudy; unsafe without treatment
+
+    
+Explanation
+
+Water is classified as Good if pH, hardness, and turbidity are all within safe ranges.
+
+Moderate indicates slightly elevated minerals, acidity/alkalinity, or turbidity, which may need treatment.
+
+Poor water fails at least one critical parameter (usually high turbidity), making it unsafe for direct consumption.
+
+12. Evaluation and Validation
+
+13. Final Model
+
+14. Conclusion and Future Work
+
+15. References
 
 
 Packages used
