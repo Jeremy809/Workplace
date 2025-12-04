@@ -51,7 +51,7 @@ Total rows (entries): 219
 
 Total columns (features): 16
 
-#	Column Name	Non-Null Count	Data Type	Description
+Column Names
 
 Date (DD/MM/YYYY)	219	object	Date when the water sample was collected (string format).
 
