@@ -198,9 +198,9 @@ Water pH Levels and Suitability for Consumption
 Water pH measures the acidity or alkalinity of water, which affects its taste, chemical properties, and safety for consumption. The scale ranges from 0 to 14:
 
 pH Range	Classification	Suitability for Drinking	Description
-< 7	Acidic	⚠ Not ideal	Acidic water can corrode pipes, leach metals, and may indicate pollution. Not generally suitable for long-term consumption.
-7 – 8.5	Neutral	✅ Safe	    Neutral to slightly alkaline water is ideal for drinking, cooking, and aquatic life. Most river water samples fall in this range.
-> 8.5	Alkaline (Basic)	⚠ Caution	 Water with high alkalinity is generally safe but may affect taste, cause scaling in pipes, and impact mineral solubility. Occasional consumption is usually fine.
+< 7	Acidic	(Not ideal)    Acidic water can corrode pipes, leach metals, and may indicate pollution. Not generally suitable for long-term consumption.
+7 – 8.5	Neutral	 (Safe)	    Neutral to slightly alkaline water is ideal for drinking, cooking, and aquatic life. Most river water samples fall in this range.
+> 8.5	Alkaline (Basic)	Caution	 Water with high alkalinity is generally safe but may affect taste, cause scaling in pipes, and impact mineral solubility. Occasional consumption is usually fine.
 
 Most river water samples were neutral (pH 7–8.5), making them suitable for consumption.
 
@@ -403,42 +403,79 @@ Some off-diagonal cells indicate misclassification patterns, e.g., Cluster 3 sam
 The Random Forest model performs well overall in distinguishing clusters, particularly for the most frequent or well-separated clusters.
 
 Misclassifications are mostly concentrated between similar clusters, suggesting potential improvement
-13. Final Model
-The Random Forest Classifier was chosen as the final model due to its high predictive accuracy, robustness, and ability to handle numeric features without extensive preprocessing. Key configuration: random_state=42 to ensure reproducibility; all numeric features from the dataset were used as input, excluding the Cluster target column.
 
-Performance Metrics (Test Set):
+10. Final Model
+Random Forest Classifier
 
-Accuracy: 95.45%
+High accuracy and robustness for tabular data.
 
-Weighted Precision: 95.61%
+Handles non-linear relationships and interactions between features.
 
-Weighted Recall: 95.45%
+Resistant to overfitting with sufficient trees.
 
-Weighted F1-score: 95.27%
+Model Configuration
 
-Cluster-wise Observations:
+Hyperparameters (after tuning via GridSearchCV):
 
-Clusters 1 and 3 were perfectly predicted.
+n_estimators = 100
+max_depth = None
+min_samples_split = 2
+max_features = None
+random_state = 42
 
-Cluster 2 showed some misclassification, likely due to its small sample size.
 
-Other clusters achieved high precision and recall, indicating strong overall performance.
+Features used: ph, turbidity_ntu, do_mg_l, ec_µs_cm, tds_mg_l, hardness_mg_caco3_l.
 
-Cross-Validation:
+Performance Metrics
 
-5-fold F1-scores: [0.879, 0.977, 0.897, 0.855, 0.952]
+Cross-validated Accuracy: 98.3%
 
-Mean F1-score: 0.912 → confirms the model generalizes well across folds.
-The Random Forest model is highly effective for predicting water quality clusters. Its high accuracy, strong per-cluster performance, and robust cross-validation results justify its selection as the final model over alternative approaches. Minor misclassifications occur mainly in underrepresented clusters, suggesting future improvements could focus on additional data collection or feature engineering for these classes.
+Test Set Accuracy: 94.4%
 
-10. Conclusion and Future Work
-This study developed a Random Forest classifier to predict water quality clusters based on numeric features from the dataset. The final model achieved high accuracy (95.45%) and strong per-cluster performance, as confirmed by cross-validation (mean F1-score: 0.912). Clusters with fewer samples showed minor misclassifications, indicating areas where additional data could improve model robustness.
+Feature Importance:
 
+Hardness (57%)
+
+Turbidity (41%)
+
+DO, EC, TDS, pH contributed minimally.
+
+Classification Report (Test Set):
+
+Class	Precision	Recall	F1-score
+Moderate	1.00	1.00	1.00
+Poor	1.00	1.00	1.00
+
+Random Forest outperformed alternative models (e.g., K-Nearest Neighbors, Decision Tree) in both accuracy and robustness.
+
+Minimal misclassifications occurred only in underrepresented clusters, suggesting that the model generalizes well.
+
+The model is interpretable via feature importance, allowing stakeholders to understand which water parameters drive predictions.
+
+
+11 Conclusion and Future Work
+    
+Random Forest is highly effective for predicting water quality in this dataset, Awith a acuracy: 0.983 (cross-validated), indicating excellent predictive performance.
+
+Hardness and turbidity are the most influential parameters.
+
+Misclassifications are mainly in underrepresented water quality categories.
+
+Geospatial mapping confirms model reliability and identifies key locations needing attention.
+
+Clustering
+
+K-Means clustering suggested 4 clusters based on water parameters.
+
+Clusters showed differences in temperature, hardness, turbidity, and total chlorine.
+
+Smaller clusters had fewer samples and were more prone to misclassification, highlighting the need for more data in underrepresented areas.
 Key Insights:
 
 Certain water quality clusters are easily distinguishable based on the features, while underrepresented clusters are more challenging.
 
 Numeric parameters such as hardness, chlorine levels, temperature, and pH proved important in distinguishing between clusters.
+
 
 Limitations:
 
@@ -448,17 +485,18 @@ The model currently only uses numeric features; categorical or temporal features
 
 Future Work:
 
-Data Enhancement: Collect more samples, particularly for underrepresented clusters, to improve model generalization.
+Data Enhancement: Collect more samples, particularly for low-represented clusters, to improve model generalization.
 
 Feature Engineering: Explore additional features or transformations to better separate similar clusters.
 
-Alternative Models: Evaluate other algorithms (e.g., Gradient Boosting, XGBoost) or ensemble approaches for potentially higher performance.
+Including additional water quality parameters (e.g., microbial counts, heavy metals).
 
 Deployment: Integrate the model into a water quality monitoring workflow for real-time predictions and decision support.
 
 This framework ensures that the study not only demonstrates strong predictive performance but also provides actionable guidance for improving and expanding the analysis in future projects.
 
-11. References
+12. References
+    
 Data Source: [River Water Quality Dataset] – Source or repository link where the dataset was obtained.
 
 Scikit-learn Documentation: Pedregosa et al., Scikit-learn: Machine Learning in Python, Journal of Machine Learning Research, 2011. https://scikit-learn.org
