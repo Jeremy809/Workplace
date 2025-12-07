@@ -12,11 +12,15 @@ The dataset River water parameters (1).csv comprises multiple physicochemical me
 
 This project therefore seeks to apply data-driven analytical techniques to explore and interpret the river water quality data. The goal is to identify hidden patterns, monitor pollution indicators, and assess whether current water conditions meet environmental and public health requirements for designated uses such as drinking water supply, agricultural irrigation, and aquatic life protection.
 
-Key Problems to Address
-The specific research objectives of this project include:
+
+The research objectives:
+
     • Identifying trends and correlations among key water-quality parameters to understand how physicochemical factors interact within the river system.
+	
     • Detecting anomalies or pollution indicators that may signal contamination events or environmental stress.
+	
     • Classifying overall water quality into categories such as good, moderate, or poor based on standard water-quality indices and threshold criteria.
+	
     • Generating actionable insights to support environmental monitoring initiatives, inform policy decisions, and contribute to improved river management practices.
 
 Out of Scope
