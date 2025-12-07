@@ -8,7 +8,6 @@ Python project: Water Quality Analysis Project
    
 Problem Statement
 Access to clean and safe water is essential for human health, ecosystem stability, and socio-economic development. Despite its importance, river systems worldwide are increasingly threatened by pollution originating from industrial effluents, agricultural runoff, and domestic wastewater. These pollutants alter the physicochemical properties of river water, potentially rendering it unsafe for human consumption, agriculture, and aquatic ecosystems.
-The dataset River water parameters (1).csv comprises multiple physicochemical measurements, including pH, turbidity, dissolved oxygen, electrical conductivity, hardness, nitrate concentration, and temperature, collected across different sampling locations and/or time periods. While the dataset provides valuable raw observations, meaningful conclusions cannot be drawn without systematic data analysis to uncover relationships, trends, and deviations from acceptable water-quality standards.
 
 This project therefore seeks to apply data-driven analytical techniques to explore and interpret the river water quality data. The goal is to identify hidden patterns, monitor pollution indicators, and assess whether current water conditions meet environmental and public health requirements for designated uses such as drinking water supply, agricultural irrigation, and aquatic life protection.
 
@@ -97,6 +96,9 @@ Dataset is mostly complete (over 97% non-null) — good data quality.
 
 The dataset was imported into Python using the Pandas library. An initial inspection of the dataset shape and structure was conducted to determine the number of observations, available variables, and data types.
 
+The dataset River water parameters.csv comprises multiple physicochemical measurements, including pH, turbidity, dissolved oxygen, electrical conductivity, hardness, nitrate concentration, and temperature, collected across different sampling locations and/or time periods. While the dataset provides valuable raw observations, meaningful conclusions cannot be drawn without systematic data analysis to uncover relationships, trends, and deviations from acceptable water-quality standards.
+
+
 5. Data Cleaning and Filtering
 
 Standardization of Column Names
@@ -157,7 +159,7 @@ pH, Dissolved oxygen (DO), Turbidity, Electrical conductivity (EC), Total dissol
 
 Sampling point and date, non-essential or highly sparse variables were excluded to streamline exploratory data analysis and modeling.
 
-The cleaned and filtered dataset was exported as:
+The cleaned and filtered dataset was updated and saved as: River_water_parameters_cleaned.csv
 
 6. Exploratory Data Analysis (EDA)
    
