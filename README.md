@@ -33,17 +33,65 @@ Prediction of future water quality trends (only historical analysis).
 
 2. Importing Packages
    
-pandas / numpy → For data cleaning, manipulation, and numerical operations.
+1. Data Manipulation & Analysis
 
-matplotlib / seaborn → For static visualizations.
+pandas – Loading, cleaning, and transforming datasets.
 
-plotly / cufflinks → For interactive plots.
+numpy – Numerical computations and array operations.
 
-sklearn → For modeling, feature scaling, evaluation, and clustering.
+2. Data Visualization
 
-scipy → For additional statistical tools.
+matplotlib.pyplot – Core plotting library.
 
-collections / itertools → For handling combinations and counting (useful in Apriori or feature selection tasks).
+matplotlib.colors – Color mapping in plots.
+
+matplotlib.patches.Patch – Custom legends for plots.
+
+seaborn – Advanced statistical visualizations.
+
+plotly.express & plotly.graph_objects – Interactive visualizations.
+
+cufflinks – Linking Plotly with pandas for interactive charts.
+
+3. Machine Learning
+
+scikit-learn:
+
+train_test_split, cross_val_score, StratifiedKFold, cross_val_predict – Model training and validation.
+
+LabelEncoder, StandardScaler, MinMaxScaler – Preprocessing.
+
+PCA – Dimensionality reduction.
+
+KMeans – Clustering.
+
+RandomForestClassifier – Classification model.
+
+accuracy_score, classification_report, confusion_matrix, silhouette_score, precision_score, recall_score, f1_score, mean_squared_error – Model evaluation metrics.
+
+4. Statistical Analysis
+
+scipy.stats – Statistical computations and tests.
+
+5. NLP (if needed)
+
+CountVectorizer, TfidfVectorizer – Text feature extraction.
+
+6. Miscellaneous
+
+collections.Counter – Counting elements in sequences.
+
+itertools.combinations – Generating combinations.
+
+7. Presentation
+
+pptx – Creating PowerPoint presentations programmatically.
+
+8. Warnings & Display Options
+
+warnings – Suppress warnings.
+
+pd.set_option – Customize pandas display formatting.
 
 3. Data Collection and Description
 
