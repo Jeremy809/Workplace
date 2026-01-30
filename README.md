@@ -33,13 +33,13 @@ Prediction of future water quality trends (only historical analysis).
 
 2. Importing Packages
    
-1. Data Manipulation & Analysis
+Data Manipulation & Analysis
 
 pandas – Loading, cleaning, and transforming datasets.
 
 numpy – Numerical computations and array operations.
 
-2. Data Visualization
+Data Visualization
 
 matplotlib.pyplot – Core plotting library.
 
@@ -53,7 +53,7 @@ plotly.express & plotly.graph_objects – Interactive visualizations.
 
 cufflinks – Linking Plotly with pandas for interactive charts.
 
-3. Machine Learning
+Machine Learning
 
 scikit-learn:
 
@@ -69,25 +69,25 @@ RandomForestClassifier – Classification model.
 
 accuracy_score, classification_report, confusion_matrix, silhouette_score, precision_score, recall_score, f1_score, mean_squared_error – Model evaluation metrics.
 
-4. Statistical Analysis
+Statistical Analysis
 
 scipy.stats – Statistical computations and tests.
 
-5. NLP (if needed)
+NLP (if needed)
 
 CountVectorizer, TfidfVectorizer – Text feature extraction.
 
-6. Miscellaneous
+Miscellaneous
 
 collections.Counter – Counting elements in sequences.
 
 itertools.combinations – Generating combinations.
 
-7. Presentation
+Presentation
 
 pptx – Creating PowerPoint presentations programmatically.
 
-8. Warnings & Display Options
+Warnings & Display Options
 
 warnings – Suppress warnings.
 
@@ -95,13 +95,20 @@ pd.set_option – Customize pandas display formatting.
 
 3. Data Collection and Description
 
-Dataset Overview
+Each record represents a specific water sample measured at a given time and location.
 
-Data type: pandas.DataFrame
-
-Total rows (entries): 219
-
-Total columns (features): 16
+Key Characteristics
+    • Total Entries: 219
+	
+    • Total Columns: 16
+	
+    • Data Types: Float (10), Integer (2), Object/String (4)
+	
+    • Missing Values: Present in a few columns (notably Level (cm), TSS (mL sed/L), Hardness, and Total Cl-).
+	
+    • Temporal Range: Covers multiple sampling dates (specific timeframe can be confirmed from the dataset).
+	
+    • Sampling Coverage: Multiple sampling points, representing different river sections or monitoring stations.
 
 Column Names
 
@@ -146,6 +153,16 @@ The dataset was imported into Python using the Pandas library. An initial inspec
 
 The dataset River water parameters.csv comprises multiple physicochemical measurements, including pH, turbidity, dissolved oxygen, electrical conductivity, hardness, nitrate concentration, and temperature, collected across different sampling locations and/or time periods. While the dataset provides valuable raw observations, meaningful conclusions cannot be drawn without systematic data analysis to uncover relationships, trends, and deviations from acceptable water-quality standards.
 
+Scope of Data
+The dataset captures environmental and water quality indicators that are essential for evaluating:
+
+    • The chemical composition of the water,
+	
+    • The biological suitability for aquatic organisms,
+	
+    • The potability and usability for domestic, agricultural, or industrial purposes,
+	
+    • The impact of seasonal or spatial variations in water parameters.
 
 5. Data Cleaning and Filtering
 
@@ -454,7 +471,7 @@ Class precision / recall / F1	All high across Safe / Treatment classes
 
 What the 98.33% Accuracy Means
 
-✅ The model correctly classifies water quality for 98 out of every 100 samples, averaged across 5-fold validation.
+The model correctly classifies water quality for 98 out of every 100 samples, averaged across 5-fold validation.
 
 The classification rules and features are highly predictive
 
@@ -487,44 +504,6 @@ Handles non-linear relationships and interactions between features.
 
 Resistant to overfitting with sufficient trees.
 
-Model Configuration
-
-Hyperparameters (after tuning via GridSearchCV):
-
-n_estimators = 100
-max_depth = None
-min_samples_split = 2
-max_features = None
-random_state = 42
-
-Features used: ph, turbidity_ntu, do_mg_l, ec_µs_cm, tds_mg_l, hardness_mg_caco3_l.
-
-Performance Metrics
-
-Cross-validated Accuracy: 98.3%
-
-Test Set Accuracy: 94.4%
-
-Feature Importance:
-
-Hardness (57%)
-
-Turbidity (41%)
-
-DO, EC, TDS, pH contributed minimally.
-
-Classification Report (Test Set):
-
-Class	Precision	Recall	F1-score
-Moderate	1.00	1.00	1.00
-Poor	1.00	1.00	1.00
-
-Random Forest outperformed alternative models (e.g., K-Nearest Neighbors, Decision Tree) in both accuracy and robustness.
-
-Minimal misclassifications occurred only in underrepresented clusters, suggesting that the model generalizes well.
-
-The model is interpretable via feature importance, allowing stakeholders to understand which water parameters drive predictions.
-
 
 11 Conclusion and Future Work
 
@@ -535,6 +514,15 @@ MAE: Average magnitude of errors in predictions; lower values are better.
 RMSE: Provides a measure of prediction error magnitude that penalizes larger deviations; lower is better.
 
 CV R²: Cross-validation R² ensures the model generalizes well to unseen data.
+
+    • pH, DO, BOD, and TDS emerged as the most influential parameters for determining water quality.
+    • The Random Forest (Tuned) model achieved the best predictive performance with:
+        ◦ R² = 0.92
+        ◦ MAE = 0.023
+        ◦ RMSE = 0.041
+    • Linear Regression performed poorly, indicating strong non-linear relationships between the water quality parameters.
+    • Gradient Boosting showed competitive performance but slightly higher computational cost.
+    • The tuned Random Forest model provided an optimal balance of accuracy, interpretability, and robustness.
 
 Key Observations:
 
