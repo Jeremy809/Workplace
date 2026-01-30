@@ -428,6 +428,16 @@ Small clusters (2 & 3) may warrant further investigation, as they could indicate
 
 8. Evaluation and Validation
 
+valuate Model Performance
+
+Regression metrics were calculated to assess the model’s predictive ability:
+
+R² Score – proportion of variance explained by the model.
+
+Mean Absolute Error (MAE) – average absolute difference between predicted and actual values.
+
+Root Mean Squared Error (RMSE) – square root of mean squared differences between predicted and actual values.
+
 Random Forest Model Summary – Cluster Prediction
 
 The Random Forest classifier was trained on the numeric features of the dataset to predict the water quality clusters (Cluster). A Stratified 5-Fold Cross-Validation was performed to ensure that each fold maintained the same class distribution.
@@ -458,6 +468,9 @@ Not overfitting
 
 Deployment-ready
 
+Cross-Validation
+
+To verify model stability and generalizability, 5-fold cross-validation was performed using R² as the scoring metric:
 
 9. Conclusion & Recommendations:
 
@@ -514,6 +527,22 @@ The model is interpretable via feature importance, allowing stakeholders to unde
 
 
 11 Conclusion and Future Work
+
+R² Score: Measures the proportion of variance in the dependent variable that is predictable from the independent variables. Higher values indicate better model fit.
+
+MAE: Average magnitude of errors in predictions; lower values are better.
+
+RMSE: Provides a measure of prediction error magnitude that penalizes larger deviations; lower is better.
+
+CV R²: Cross-validation R² ensures the model generalizes well to unseen data.
+
+Key Observations:
+
+Gradient Boosting and the tuned Random Forest outperform other models in terms of R² and RMSE, indicating better predictive accuracy.
+
+Linear Regression shows reasonable performance but is less accurate for capturing complex nonlinear relationships in the data.
+
+Cross-validation confirms that the models are stable and not overfitting.
     
 Random Forest is highly effective for predicting water quality in this dataset, Awith a acuracy: 0.983 (cross-validated), indicating excellent predictive performance.
 
