@@ -560,7 +560,28 @@ Small sample sizes in some clusters may have affected predictive performance.
 
 The model currently only uses numeric features; categorical or temporal features were not incorporated.
 
-Future Work:
+Conclusion
+
+The Random Forest model successfully classified water quality into categories such as Moderate, Poor, and Good with high accuracy (~100% on test data).
+
+Key features influencing classification included turbidity, dissolved oxygen, EC, TDS, and pH, highlighting the most critical water quality parameters.
+
+Clustering and PCA visualizations confirmed distinct patterns in the data, and cross-validation ensured that the model is robust and generalizable.
+
+The workflow also enabled prediction for new samples, demonstrating practical applicability for real-world monitoring.
+
+Future Work
+
+Data Expansion: Incorporate more samples across different locations and time periods to improve model robustness and handle seasonal variations.
+
+Feature Enrichment: Include additional water quality indicators such as heavy metals or microbial counts to capture a more comprehensive picture.
+
+Advanced Modeling: Explore ensemble methods, XGBoost, or deep learning models for further performance gains and better handling of imbalanced classes.
+
+Deployment & Automation: Develop a dashboard or automated pipeline for real-time water quality monitoring and alerts.
+
+Geospatial Analysis: Combine water quality predictions with GIS mapping for location-based insights and policy planning.
+
 
 Data Enhancement: Collect more samples, particularly for low-represented clusters, to improve model generalization.
 
